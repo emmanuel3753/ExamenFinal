@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const cors = require('cors')
 
 const users = require('./controllers/users.js')
 const todos = require('./controllers/todos.js')
 const auth = require('./middleware/auth')
+//CORS
 
+router.all('*', cors())
 router.get('/users', auth, users.getUser)
 router.post('/users/login', users.login)
 router.post('/users/logout', auth, users.logout)
